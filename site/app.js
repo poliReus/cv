@@ -150,6 +150,9 @@ const projects = [
 
 const projectGrid = document.getElementById("project-grid");
 const panel = document.getElementById("project-panel");
+if (panel && panel.parentElement !== document.body) {
+  document.body.appendChild(panel);
+}
 const panelTitle = document.getElementById("panel-title");
 const panelContext = document.getElementById("panel-context");
 const panelDate = document.getElementById("panel-date");
