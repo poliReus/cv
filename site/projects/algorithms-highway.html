@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Algorithms and Data Structures | Fabio Rossi</title>
+  <meta name="description" content="C project managing highway stations with BSTs, sorted car lists, and route planning based on vehicle range." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="algorithms-highway">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Algorithms | Data Structures | C</p>
+        <h1>Highway Stations Planner</h1>
+        <p class="lead">
+          Implemented in C, this project models highway service stations with a BST and per-station vehicle
+          lists. It supports dynamic updates and computes feasible routes based on vehicle autonomy.
+        </p>
+        <div class="project-badges">
+          <span class="chip">C</span>
+          <span class="chip">BST</span>
+          <span class="chip">Linked List</span>
+          <span class="chip">Path Planning</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="../index.html#contact">Ask for Details</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Sep 2023</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Project</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Input</p>
+            <p class="value">Command stream</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Output</p>
+            <p class="value">Route steps</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          Stations are stored in a binary search tree keyed by distance from the highway origin. Each station keeps
+          a sorted doubly linked list of vehicles, allowing fast access to the max autonomy car for routing.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Core operations</h3>
+            <ul>
+              <li>Add or demolish stations in the BST.</li>
+              <li>Add or scrap vehicles while preserving sorted autonomy.</li>
+              <li>Plan routes by chaining reachable stations.</li>
+              <li>Stream command I/O for batch processing.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Command set</h3>
+            <pre class="code-block">aggiungi-stazione
+aggiungi-auto
+demolisci-stazione
+rottama-auto
+pianifica-percorso</pre>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Data Structures</h3>
+            <p class="meta">BST for stations</p>
+            <p class="meta">Doubly linked list for cars</p>
+            <p class="meta">Array snapshot for routing</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Route Planner Demo</h2>
+        <p>Interact with a small sample network to see reachable paths based on max autonomy.</p>
+      </div>
+      <div
+        class="station-planner"
+        data-station-planner
+        data-stations='[
+          {"id":"S0","distance":0,"range":60},
+          {"id":"S1","distance":20,"range":40},
+          {"id":"S2","distance":50,"range":30},
+          {"id":"S3","distance":80,"range":70},
+          {"id":"S4","distance":110,"range":50},
+          {"id":"S5","distance":150,"range":0}
+        ]'>
+        <div class="planner-controls">
+          <label class="label">Start</label>
+          <select class="select" data-start></select>
+          <label class="label">Destination</label>
+          <select class="select" data-end></select>
+        </div>
+        <div class="station-axis">
+          <div class="station-line"></div>
+          <div class="station-range" data-range></div>
+          <div class="station-markers" data-markers></div>
+        </div>
+        <div class="planner-output" data-output></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parallel Computing Challenge | Fabio Rossi</title>
+  <meta name="description" content="Serial vs multi-threaded merge sort in C++ with benchmarking across sizes and cutoff thresholds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="parallel-challenge">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/FedericoQuartieri/ParallelChallenge" target="_blank" rel="noreferrer">GitHub Repo</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Parallel Algorithms | Benchmarking | C++</p>
+        <h1>Parallel Computing Challenge</h1>
+        <p class="lead">
+          Implemented serial and multi-threaded merge sort in C++ and built a reproducible benchmarking pipeline
+          to study scaling across input sizes and cutoff thresholds.
+        </p>
+        <div class="project-badges">
+          <span class="chip">C++</span>
+          <span class="chip">Benchmarking</span>
+          <span class="chip">Gnuplot</span>
+          <span class="chip">Python</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/FedericoQuartieri/ParallelChallenge" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Nov 2024</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Project</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Artifacts</p>
+            <p class="value">CSV + 2D/3D plots</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Focus</p>
+            <p class="value">Merge sort scaling</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The challenge evaluates how merge sort behaves across different cutoffs and array sizes. The workflow
+          produces CSV datasets and automated plots for analysis.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Approach</h3>
+            <ul>
+              <li>Implemented serial and parallel merge sort in C++.</li>
+              <li>Measured runtime across varying array sizes.</li>
+              <li>Benchmarked cutoff thresholds for hybrid sorting.</li>
+              <li>Generated CSV datasets and Gnuplot visualizations.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Automation</h3>
+            <ul>
+              <li>Python helpers for aggregating timing runs.</li>
+              <li>Gnuplot scripts for 2D/3D surfaces.</li>
+              <li>Reproducible outputs committed to the repo.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Key Files</h3>
+            <p class="meta">main.cpp</p>
+            <p class="meta">graph.py</p>
+            <p class="meta">plot_commands.gp</p>
+            <p class="meta">tempi_3d.csv</p>
+          </div>
+          <div class="card">
+            <h3>Metrics</h3>
+            <p class="meta">Serial vs parallel time</p>
+            <p class="meta">Speedup curves</p>
+            <p class="meta">Cutoff sensitivity</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Performance Explorer</h2>
+        <p>Switch between datasets to inspect how serial and parallel timings shift.</p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-controls">
+          <label class="label" for="dataset">Dataset</label>
+          <select class="select" id="dataset" data-line-select>
+            <option value="cutoff">Cutoff sweep (fixed size)</option>
+            <option value="size">Array size sweep (cutoff 0)</option>
+          </select>
+          <span class="meta" data-line-summary>Latest point speedup: --</span>
+        </div>
+        <canvas class="chart-canvas" data-line-chart aria-label="Line chart of serial vs parallel timings" role="img"></canvas>
+        <div class="chart-legend">
+          <span><span class="legend-dot" style="background: #0f766e;"></span>Serial</span>
+          <span><span class="legend-dot" style="background: #f97316;"></span>Parallel</span>
+        </div>
+      </div>
+      <div class="project-grid-gallery" style="margin-top: 1.5rem;">
+        <img src="../assets/projects/parallel/tempi_cutoff_max_size.png" alt="Runtime versus cutoff plot" />
+        <img src="../assets/projects/parallel/plot_3d_cutoff.png" alt="3D surface plot for cutoff and size" />
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NLA Challenge 1 | Fabio Rossi</title>
+  <meta name="description" content="Image processing pipeline in C++ with Eigen and stb_image: noise injection, smoothing, sharpening, edge detection, and Matrix Market exports." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="nla-challenge-1">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/FedericoQuartieri/NLAChallenge1" target="_blank" rel="noreferrer">GitHub Repo</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Numerical Linear Algebra | Image Processing</p>
+        <h1>NLA Challenge 1</h1>
+        <p class="lead">
+          Implemented an image-processing pipeline in C++ using Eigen and stb_image. The project injects noise,
+          applies smoothing and sharpening filters, exports Matrix Market data, and runs edge detection.
+        </p>
+        <div class="project-badges">
+          <span class="chip">C++</span>
+          <span class="chip">Eigen</span>
+          <span class="chip">stb_image</span>
+          <span class="chip">Matrix Market</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/FedericoQuartieri/NLAChallenge1" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Oct 2024</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Challenge</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Artifacts</p>
+            <p class="value">PNG + MTX</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Focus</p>
+            <p class="value">Filtering + sparse ops</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          This challenge combines classical filtering with matrix exports for deeper inspection. It produces
+          noise-injected inputs, applies smoothing and sharpening operators, and saves intermediate results in
+          Matrix Market format for downstream analysis.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Key tasks</h3>
+            <ul>
+              <li>Add noise to the input image and validate norms.</li>
+              <li>Apply smoothing (A1) and sharpening (A2) operators.</li>
+              <li>Export matrices and vectors to .mtx files.</li>
+              <li>Run edge detection (A3) and export the result.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Implementation notes</h3>
+            <ul>
+              <li>Uses Eigen for dense and sparse matrix operations.</li>
+              <li>Stb_image handles PNG I/O for intermediate outputs.</li>
+              <li>Matrix Market exports enable external inspection.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Outputs</h3>
+            <p class="meta">noised_task2.png</p>
+            <p class="meta">smoothed_task5.png</p>
+            <p class="meta">sharpened_task7.png</p>
+            <p class="meta">edge_detection_task11.png</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Filter Comparison</h2>
+        <p>Use the slider to inspect how smoothing reduces noise.</p>
+      </div>
+      <div class="compare" data-compare>
+        <div class="compare-inner">
+          <img src="../assets/projects/nla1/noised_task2.png" alt="Noised input image" />
+          <div class="compare-top">
+            <img src="../assets/projects/nla1/smoothed_task5.png" alt="Smoothed output image" />
+          </div>
+        </div>
+        <div class="compare-controls">
+          <div class="compare-labels">
+            <span>Noised</span>
+            <span>Smoothed</span>
+          </div>
+          <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare noised and smoothed output" />
+        </div>
+      </div>
+      <div class="project-grid-gallery" style="margin-top: 1.5rem;">
+        <figure class="figure">
+          <img src="../assets/projects/nla1/sharpened_task7.png" alt="Sharpened image output" />
+          <figcaption>Sharpening filter emphasizes edges and contrast.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="../assets/projects/nla1/edge_detection_task11.png" alt="Edge detection output" />
+          <figcaption>Edge detection using a dedicated operator (A3).</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

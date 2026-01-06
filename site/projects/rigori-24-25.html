@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Penalty Takers Analysis | Fabio Rossi</title>
+  <meta name="description" content="Full-stack web platform to analyze penalty takers in Serie C Group B with interactive shot maps and match calendar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="rigori-24-25">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/analisirigori/rigori_24-25" target="_blank" rel="noreferrer">GitHub Repo</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Sports Analytics | Web Platform</p>
+        <h1>Penalty Takers Analysis</h1>
+        <p class="lead">
+          A dedicated web platform to track and analyze penalty takers in Serie C Group B (2024/25). The site
+          includes login-protected pages, team rosters, interactive shot maps, and a visual match calendar.
+        </p>
+        <div class="project-badges">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Data Viz</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/analisirigori/rigori_24-25" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Sep 2024 - Mar 2025</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Personal Project</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Modules</p>
+            <p class="value">Teams, Calendar, Players</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Focus</p>
+            <p class="value">Penalty analysis</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The platform surfaces penalty outcomes through structured team pages. Each player page overlays shot
+          locations on a goal image and links to video evidence. A calendar module tracks fixture progression.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Core features</h3>
+            <ul>
+              <li>Login-protected access to analytics views.</li>
+              <li>Team and player navigation with branded assets.</li>
+              <li>Shot map overlay with video links per penalty.</li>
+              <li>Calendar module for match schedule awareness.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Data representation</h3>
+            <ul>
+              <li>Penalty spots plotted as absolute goal coordinates.</li>
+              <li>Outcome encoded via goal/miss icons.</li>
+              <li>Result tables with match, minute, and clip links.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Assets</h3>
+            <p class="meta">Custom logos and team badges</p>
+            <p class="meta">Shot map icons</p>
+            <p class="meta">Calendar visuals</p>
+          </div>
+          <div class="card">
+            <h3>Stack</h3>
+            <p class="meta">Static HTML + CSS</p>
+            <p class="meta">JavaScript interactions</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Interactive Shot Map</h2>
+        <p>Sample data from a player page, showing shot placement and outcome.</p>
+      </div>
+      <div class="shot-map" data-shot-map>
+        <div class="shot-map-inner">
+          <img src="../assets/projects/rigori/porta.png" alt="Goal with shot overlay" />
+        </div>
+        <div class="shot-legend">
+          <span><img src="../assets/projects/rigori/football.png" alt="" /> Goal</span>
+          <span><img src="../assets/projects/rigori/missed.png" alt="" /> Miss</span>
+        </div>
+        <div class="shot-info" data-shot-info></div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Match</th>
+              <th>Minute</th>
+              <th>Outcome</th>
+              <th>Video</th>
+            </tr>
+          </thead>
+          <tbody data-shot-table></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NLA Challenge 2 | Fabio Rossi</title>
+  <meta name="description" content="SVD-based reconstructions, checkerboard synthesis, and LIS-powered eigenvalue analysis for NLA Challenge 2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="nla-challenge-2">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/FedericoQuartieri/NLAChallenge2" target="_blank" rel="noreferrer">GitHub Repo</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Spectral Analysis | SVD | Sparse Solvers</p>
+        <h1>NLA Challenge 2</h1>
+        <p class="lead">
+          Expanded the image-processing workflow with SVD-based reconstructions, checkerboard synthesis, and
+          eigenvalue analysis using LIS. Produced multiple low-rank reconstructions and noise-aware outputs.
+        </p>
+        <div class="project-badges">
+          <span class="chip">C</span>
+          <span class="chip">Eigen</span>
+          <span class="chip">LIS</span>
+          <span class="chip">SVD</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/FedericoQuartieri/NLAChallenge2" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Oct 2024</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Challenge</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Artifacts</p>
+            <p class="value">PNG + MTX + Logs</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Focus</p>
+            <p class="value">SVD + eigenvalues</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The workflow computes A^T A, runs LIS power iterations to estimate dominant eigenvalues, and uses SVD
+          to build low-rank reconstructions (CD^T). The pipeline also synthesizes checkerboard data and analyzes
+          noise propagation.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Key tasks</h3>
+            <ul>
+              <li>Compute A^T A and export matrix market files.</li>
+              <li>Estimate eigenvalues with LIS power method.</li>
+              <li>Generate low-rank reconstructions via SVD.</li>
+              <li>Create and denoise checkerboard patterns.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Implementation notes</h3>
+            <ul>
+              <li>Uses Eigen for SVD and matrix operations.</li>
+              <li>Invokes LIS with mpirun for eigen-solves.</li>
+              <li>Exports diagnostic outputs and logs.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Outputs</h3>
+            <p class="meta">CDTranspose_40_task7.png</p>
+            <p class="meta">CDTranspose_80_task7.png</p>
+            <p class="meta">CDTranspose_noised_5_task12.png</p>
+            <p class="meta">CDTranspose_noised_10_task12.png</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Low-Rank Reconstruction</h2>
+        <p>Compare how two ranks influence reconstruction detail.</p>
+      </div>
+      <div class="compare" data-compare>
+        <div class="compare-inner">
+          <img src="../assets/projects/nla2/CDTranspose_40_task7.png" alt="Low-rank reconstruction at k=40" />
+          <div class="compare-top">
+            <img src="../assets/projects/nla2/CDTranspose_80_task7.png" alt="Low-rank reconstruction at k=80" />
+          </div>
+        </div>
+        <div class="compare-controls">
+          <div class="compare-labels">
+            <span>k = 40</span>
+            <span>k = 80</span>
+          </div>
+          <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare k=40 and k=80 reconstructions" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Noise Handling</h2>
+        <p>Visualize how stronger noise levels alter the reconstructed output.</p>
+      </div>
+      <div class="compare" data-compare>
+        <div class="compare-inner">
+          <img src="../assets/projects/nla2/CDTranspose_noised_5_task12.png" alt="Reconstruction with noise level 5" />
+          <div class="compare-top">
+            <img src="../assets/projects/nla2/CDTranspose_noised_10_task12.png" alt="Reconstruction with noise level 10" />
+          </div>
+        </div>
+        <div class="compare-controls">
+          <div class="compare-labels">
+            <span>Noise 5</span>
+            <span>Noise 10</span>
+          </div>
+          <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare reconstructions at different noise levels" />
+        </div>
+      </div>
+      <div class="project-grid-gallery" style="margin-top: 1.5rem;">
+        <figure class="figure">
+          <img src="../assets/projects/nla2/scacchiera.png" alt="Checkerboard synthesis" />
+          <figcaption>Checkerboard used to study structured patterns and noise.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

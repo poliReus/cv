@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fabio Rossi | HPC Engineering and Scientific Computing</title>
+  <meta name="description" content="Fabio Rossi - MSc student in High Performance Computing Engineering. MPI pipelines, bioinformatics workflows, data-driven automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="#top">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="assets/resume.pdf" download>Download CV</a>
+        <a class="btn" href="#contact">Hire Fabio</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-text" data-reveal>
+        <p class="eyebrow">MSc in High Performance Computing Engineering</p>
+        <h1>Fabio Rossi</h1>
+        <p class="lead">
+          MSc student building MPI-distributed scientific pipelines in Python. Focused on scalable computing,
+          bioinformatics workflows, and data-driven automation.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#projects">Explore Projects</a>
+          <a class="btn ghost" href="https://linkedin.com/in/fabio-rossi-7a9781252/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">10</span>
+            <span class="stat-label">Projects shipped</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">2+</span>
+            <span class="stat-label">Years tutoring</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">MPI</span>
+            <span class="stat-label">Distributed pipelines</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card" data-reveal>
+        <div class="portrait">
+          <img src="assets/profile.png" alt="Portrait of Fabio Rossi" />
+        </div>
+        <div class="hero-card-info">
+          <div>
+            <p class="label">Location</p>
+            <p class="value">Milan, Italy</p>
+          </div>
+          <div>
+            <p class="label">Email</p>
+            <a class="value link" href="mailto:fabiorossi352@gmail.com">fabiorossi352@gmail.com</a>
+          </div>
+          <div>
+            <p class="label">Phone</p>
+            <a class="value link" href="tel:+393805946035">+39 380 594 6035</a>
+          </div>
+        </div>
+        <div class="focus">
+          <p class="label">Focus Areas</p>
+          <div class="chip-row">
+            <span class="chip">HPC</span>
+            <span class="chip">Bioinformatics</span>
+            <span class="chip">MPI</span>
+            <span class="chip">Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" id="about" data-reveal>
+      <div class="section-head">
+        <h2>About</h2>
+        <p>
+          I design reliable, scalable scientific computing workflows. My recent work spans MPI-distributed docking
+          pipelines, data-rich sports analytics, and CI/CD for HPC deployments.
+        </p>
+      </div>
+      <div class="about-grid">
+        <div class="card">
+          <h3>Current Focus</h3>
+          <ul>
+            <li>MPI and SLURM orchestration for distributed experiments.</li>
+            <li>Bioinformatics workflows with OpenBabel and AutoDock Vina.</li>
+            <li>Data visualization and reporting with Python and web tooling.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Working Style</h3>
+          <ul>
+            <li>Builds reproducible pipelines and repeatable benchmarking.</li>
+            <li>Balances research rigor with practical delivery.</li>
+            <li>Collaborates across engineering and analytics teams.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" data-reveal>
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Navigate the work that defines my learning curve and the products I ship.</p>
+      </div>
+      <div class="filter-row" role="tablist" aria-label="Project filters">
+        <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="chip" data-filter="hpc" role="tab">HPC</button>
+        <button class="chip" data-filter="bio" role="tab">Bioinformatics</button>
+        <button class="chip" data-filter="data" role="tab">Data</button>
+        <button class="chip" data-filter="devops" role="tab">DevOps</button>
+        <button class="chip" data-filter="systems" role="tab">Systems</button>
+        <button class="chip" data-filter="web" role="tab">Web</button>
+      </div>
+      <div id="project-grid" class="project-grid"></div>
+
+      <div class="project-panel" id="project-panel" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="panel-inner">
+          <button class="panel-close" type="button" aria-label="Close project panel">Close</button>
+          <div class="panel-body">
+            <div class="panel-header">
+              <p class="eyebrow" id="panel-context"></p>
+              <h3 id="panel-title"></h3>
+              <p class="panel-date" id="panel-date"></p>
+            </div>
+            <ul class="panel-list" id="panel-list"></ul>
+            <div class="panel-tags" id="panel-tags"></div>
+            <div class="panel-links" id="panel-links">
+              <a class="btn ghost" href="#" id="panel-case-study">Case Study</a>
+              <a class="btn ghost" href="#" id="panel-repo">Repository</a>
+            </div>
+            <div class="panel-actions">
+              <button class="btn ghost" type="button" id="panel-prev">Previous</button>
+              <button class="btn" type="button" id="panel-next">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" data-reveal>
+      <div class="section-head">
+        <h2>Experience</h2>
+        <p>Hands-on roles across AI training, tutoring, and team operations.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Outlier AI</h3>
+            <p class="role">Coding and Math Expert / AI Trainer (Remote, contractor)</p>
+            <p class="meta">Dec 2024 - Present</p>
+            <ul>
+              <li>Authored and reviewed math and coding problems for correctness and clarity.</li>
+              <li>Reviewed AI-generated code across Python, C++, and JavaScript.</li>
+              <li>Generated training data and delivered concise, pedagogical feedback.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Politecnico di Milano</h3>
+            <p class="role">Peer Tutor</p>
+            <p class="meta">Jan 2022 - Sep 2024</p>
+            <ul>
+              <li>Supported Foundations of Computer Science and Geometry and Linear Algebra exam prep.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Skyward Experimental Rocketry</h3>
+            <p class="role">Logistics Department Member</p>
+            <p class="meta">Sep 2022 - Oct 2023</p>
+            <ul>
+              <li>Built and managed partner relationships to support logistics operations.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>A.S.D. Vastogirardi</h3>
+            <p class="role">Match Analyst U19 National League</p>
+            <p class="meta">Aug 2019 - Jun 2021</p>
+            <ul>
+              <li>Analyzed matches to identify strengths and improvement areas.</li>
+              <li>Prepared training sessions and supported the head coach.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" data-reveal>
+      <div class="section-head">
+        <h2>Skills</h2>
+        <p>Tooling that powers reproducible pipelines and scalable computation.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="card">
+          <h3>Programming</h3>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">Flask</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">C</span>
+            <span class="chip">C++</span>
+            <span class="chip">Java</span>
+            <span class="chip">MATLAB</span>
+            <span class="chip">Julia</span>
+            <span class="chip">Bash</span>
+            <span class="chip">LaTeX</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>HPC and Tools</h3>
+          <div class="chip-row">
+            <span class="chip">MPI (mpi4py)</span>
+            <span class="chip">SLURM</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Git</span>
+            <span class="chip">Linux</span>
+            <span class="chip">OpenBabel</span>
+            <span class="chip">AutoDock Vina</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education" data-reveal>
+      <div class="section-head">
+        <h2>Education</h2>
+        <p>A strong foundation in computer science, engineering, and scientific computing.</p>
+      </div>
+      <div class="card-list">
+        <div class="card">
+          <h3>Politecnico di Milano</h3>
+          <p class="role">MSc in High Performance Computing Engineering</p>
+          <p class="meta">Sep 2024 - Present</p>
+        </div>
+        <div class="card">
+          <h3>Politecnico di Milano</h3>
+          <p class="role">BSc in Computer Science and Engineering</p>
+          <p class="meta">Sep 2021 - Mar 2025</p>
+        </div>
+        <div class="card">
+          <h3>Liceo Scientifico Ettore Majorana</h3>
+          <p class="role">Isernia, Italy</p>
+          <p class="meta">Sep 2016 - Jul 2021</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="achievements" data-reveal>
+      <div class="section-head">
+        <h2>Achievements</h2>
+        <p>Competitive results that highlight problem solving and consistency.</p>
+      </div>
+      <div class="card">
+        <ul class="list">
+          <li>Best Freshman Award - Politecnico di Milano (2021).</li>
+          <li>National Third Place - Italian Olympiads in Problem Solving (2018).</li>
+          <li>National Finalist - Italian Olympiads in Mathematics, Teams (2018).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="languages" data-reveal>
+      <div class="section-head">
+        <h2>Languages</h2>
+        <p>Multilingual communication for global collaboration.</p>
+      </div>
+      <div class="language-grid">
+        <div class="card">
+          <h3>English</h3>
+          <p class="meta">C1 Level</p>
+        </div>
+        <div class="card">
+          <h3>Italian</h3>
+          <p class="meta">Native proficiency</p>
+        </div>
+        <div class="card">
+          <h3>Spanish</h3>
+          <p class="meta">A1 (studying)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" data-reveal>
+      <div class="cta">
+        <div>
+          <h2>Ready to build the next pipeline?</h2>
+          <p>Let's connect on research, scientific computing, or analytics.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn" href="mailto:fabiorossi352@gmail.com">Email Fabio</a>
+          <a class="btn ghost" href="assets/resume.pdf" download>Download CV</a>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="card">
+          <p class="label">Email</p>
+          <a class="value link" href="mailto:fabiorossi352@gmail.com">fabiorossi352@gmail.com</a>
+        </div>
+        <div class="card">
+          <p class="label">Phone</p>
+          <a class="value link" href="tel:+393805946035">+39 380 594 6035</a>
+        </div>
+        <div class="card">
+          <p class="label">LinkedIn</p>
+          <a class="value link" href="https://linkedin.com/in/fabio-rossi-7a9781252/" target="_blank" rel="noreferrer">fabio-rossi-7a9781252</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built with vibe coding energy, caffeine, and curiosity.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

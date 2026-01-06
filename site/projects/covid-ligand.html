@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HPC Bio Docking Pipeline | Fabio Rossi</title>
+  <meta name="description" content="End-to-end MPI-distributed docking pipeline for SARS-CoV-2 Mpro using AutoDock Vina, OpenBabel, and NGLView reporting." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="covid-ligand">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/poliReus/covid_ligand" target="_blank" rel="noreferrer">GitHub Repo</a>
+        <a href="https://polireus.github.io/covid_ligand/views.html" target="_blank" rel="noreferrer">Sample Reports</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Bioinformatics | MPI | Scientific Pipelines</p>
+        <h1>HPC Bio Docking Pipeline</h1>
+        <p class="lead">
+          End-to-end virtual screening workflow for SARS-CoV-2 Mpro (6LU7). The pipeline converts SMILES to ligands,
+          distributes docking across MPI ranks, and generates NGLView HTML reports plus CSV summaries.
+        </p>
+        <div class="project-badges">
+          <span class="chip">Python</span>
+          <span class="chip">MPI (mpi4py)</span>
+          <span class="chip">AutoDock Vina</span>
+          <span class="chip">OpenBabel</span>
+          <span class="chip">SLURM</span>
+          <span class="chip">Docker</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/poliReus/covid_ligand" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Jan 2026</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Personal Project</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Outputs</p>
+            <p class="value">CSV + HTML Reports</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Target</p>
+            <p class="value">SARS-CoV-2 Mpro</p>
+          </div>
+        </div>
+        <div>
+          <p class="label">Key Files</p>
+          <p class="value">run_pipeline.py, gen_ligands.py, mpi_docking.py</p>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The workflow orchestrates ligand preparation, MPI-distributed docking, and post-processing. It automates
+          OpenBabel-based 3D generation, uses a fixed Vina grid box, and ranks results by affinity and ligand
+          efficiency before exporting interactive views.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>What it delivers</h3>
+            <ul>
+              <li>SMILES-to-ligand conversion with 3D geometry at pH 7.4.</li>
+              <li>Round-robin MPI docking across ligands and ranks.</li>
+              <li>NGLView HTML reports for each ligand.</li>
+              <li>CSV summary with affinity and ligand efficiency.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Reproducible deployment</h3>
+            <ul>
+              <li>Local run via run_pipeline.py.</li>
+              <li>SLURM submission script for HPC clusters.</li>
+              <li>Dockerfile for consistent environments.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Grid box</h3>
+            <p class="meta">Center: (-10.6, 12.6, 68.8)</p>
+            <p class="meta">Size: (30.0, 30.0, 30.0)</p>
+          </div>
+          <div class="card">
+            <h3>Outputs</h3>
+            <p class="meta">ligands/*.pdbqt</p>
+            <p class="meta">results/*_out.pdbqt</p>
+            <p class="meta">views/*.html</p>
+            <p class="meta">final_summary.csv</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Pipeline</h2>
+        <p>Each stage is scripted and can run locally, under SLURM, or inside Docker.</p>
+      </div>
+      <div class="pipeline" data-pipeline>
+        <div class="pipeline-step">
+          <h4>1. Input preparation</h4>
+          <p>Read molecule names and SMILES from data/test.csv and load the prepared receptor.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>2. Ligand generation</h4>
+          <p>OpenBabel converts SMILES to PDBQT with 3D coordinates and partial charges.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>3. MPI docking</h4>
+          <p>Ligands are distributed across MPI ranks, each calling AutoDock Vina.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>4. Aggregation + ranking</h4>
+          <p>Results are sorted by best affinity, with ligand efficiency computed.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>5. Reporting</h4>
+          <p>Interactive NGLView HTML files and a CSV summary are written.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Sample Results</h2>
+        <p>These values come from the repository's local test run and are meant for relative ranking.</p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-controls">
+          <span class="label">Affinity (kcal/mol) - more negative is stronger</span>
+        </div>
+        <canvas class="chart-canvas" data-bar-chart data-bar-source="covid" aria-label="Bar chart of sample docking affinities" role="img"></canvas>
+        <div class="chart-legend">
+          <span><span class="legend-dot" style="background: #0f766e;"></span>Affinity magnitude</span>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 1.5rem;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Molecule</th>
+              <th>Affinity (kcal/mol)</th>
+              <th>Ligand Efficiency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ritonavir</td>
+              <td>-5.499</td>
+              <td>0.012</td>
+            </tr>
+            <tr>
+              <td>Nirmatrelvir</td>
+              <td>-5.162</td>
+              <td>0.016</td>
+            </tr>
+            <tr>
+              <td>Remdesivir</td>
+              <td>-4.381</td>
+              <td>0.013</td>
+            </tr>
+            <tr>
+              <td>Ibuprofene</td>
+              <td>-4.083</td>
+              <td>0.030</td>
+            </tr>
+            <tr>
+              <td>Aspirina</td>
+              <td>-3.813</td>
+              <td>0.033</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codex Naturalis | Software Engineering Project</title>
+  <meta name="description" content="Networked implementation of Codex Naturalis with RMI/Socket support, CLI/GUI clients, multi-game server, and in-game chat." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="codex-naturalis">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Software Engineering | Networking | Java</p>
+        <h1>Codex Naturalis</h1>
+        <p class="lead">
+          Multiplayer implementation of the Codex Naturalis board game with a Java server and client. Supports
+          RMI or Socket networking, CLI or GUI clients, in-game chat, reconnection handling, and multiple games
+          running in parallel.
+        </p>
+        <div class="project-badges">
+          <span class="chip">Java</span>
+          <span class="chip">RMI</span>
+          <span class="chip">Socket</span>
+          <span class="chip">CLI/GUI</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="../assets/projects/codex-naturalis/sw_proj.pdf" target="_blank" rel="noreferrer">Project Report</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Jun 2024</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Project</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Clients</p>
+            <p class="value">CLI and GUI</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Networking</p>
+            <p class="value">RMI + Socket</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The project delivers a full playable version of Codex Naturalis with robust networking and game
+          management. The server supports multiple concurrent games, chat channels, and reconnection logic.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Key features</h3>
+            <ul>
+              <li>Multiple simultaneous games with server-side orchestration.</li>
+              <li>In-game chat (private and global).</li>
+              <li>Reconnect support for dropped players.</li>
+              <li>Choice of CLI or GUI client.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Architecture flow</h3>
+            <div class="architecture-flow">
+            <div class="flow-node">Client (CLI/GUI)</div>
+            <div class="flow-arrow">&lt;-&gt;</div>
+            <div class="flow-node">Network Layer (RMI or Socket)</div>
+            <div class="flow-arrow">&lt;-&gt;</div>
+            <div class="flow-node">Server (multi-game + chat)</div>
+          </div>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Launch files</h3>
+            <p class="meta">server.jar</p>
+            <p class="meta">code-naturalis.jar</p>
+          </div>
+          <div class="card">
+            <h3>UI notes</h3>
+            <p class="meta">CLI optimized for dark terminals</p>
+            <p class="meta">GUI max resolution 1920x1080</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Interactive Launcher</h2>
+        <p>Configure connection type and UI to generate the exact client command.</p>
+      </div>
+      <div class="card command-builder" data-codex-builder>
+        <div class="builder-controls">
+          <div>
+            <p class="label">Connection</p>
+            <div class="builder-options">
+              <label class="builder-option"><input type="radio" name="connection" value="1" checked /> RMI</label>
+              <label class="builder-option"><input type="radio" name="connection" value="2" /> Socket</label>
+            </div>
+          </div>
+          <div>
+            <p class="label">Interface</p>
+            <div class="builder-options">
+              <label class="builder-option"><input type="radio" name="ui" value="1" checked /> CLI</label>
+              <label class="builder-option"><input type="radio" name="ui" value="2" /> GUI</label>
+            </div>
+          </div>
+          <div>
+            <p class="label">Server IP</p>
+            <input class="select" type="text" value="192.168.1.10" data-server-ip />
+          </div>
+        </div>
+        <div class="builder-output">
+          <p class="label">Server Command</p>
+          <code class="command-line" data-server-command>java -jar server.jar 192.168.1.10</code>
+        </div>
+        <div class="builder-output">
+          <p class="label">Client Command</p>
+          <code class="command-line" data-command-output>java -jar code-naturalis.jar 1 1 192.168.1.10</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Quality and Testing</h2>
+        <p>Regression coverage snapshots from the final delivery.</p>
+      </div>
+      <figure class="figure">
+        <img src="../assets/projects/codex-naturalis/test_coverage_screenshot.jpeg" alt="Test coverage summary" />
+        <figcaption>Automated test coverage captured at delivery.</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DevOps Grayscale Pipeline | Fabio Rossi</title>
+  <meta name="description" content="CI/CD pipeline with Google Test, Singularity containerization, and SLURM deployment for grayscale conversion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="devops-grayscale">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">DevOps | CI/CD | HPC Deployment</p>
+        <h1>Color to Grayscale Conversion</h1>
+        <p class="lead">
+          End-to-end CI/CD workflow for validating a grayscale conversion library. The pipeline runs 120+ Google
+          Tests, builds a Singularity image, and deploys to the Galileo100 cluster via SLURM.
+        </p>
+        <div class="project-badges">
+          <span class="chip">GitHub Actions</span>
+          <span class="chip">Google Test</span>
+          <span class="chip">Singularity</span>
+          <span class="chip">SLURM</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="../index.html#contact">Ask for Details</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Jun 2025</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Project</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Tests</p>
+            <p class="value">120+ cases</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Deploy</p>
+            <p class="value">Galileo100</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The project validates multiple grayscale conversion strategies with a deep test suite and automates
+          delivery through containerization and remote HPC execution.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Testing strategy</h3>
+            <ul>
+              <li>Method-specific tests for channel copy, mean, lightness, luminosity, and RMS.</li>
+              <li>Cross-method comparisons against reference implementations.</li>
+              <li>Property tests for bounds, dimensions, and empty inputs.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>DevOps deliverables</h3>
+            <ul>
+              <li>GitHub Actions pipeline for build/test/containerize.</li>
+              <li>Singularity image creation and artifact upload.</li>
+              <li>Automated SLURM job submission on Galileo100.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>My role</h3>
+            <p class="meta">CI/CD setup</p>
+            <p class="meta">Deployment automation</p>
+            <p class="meta">Singularity integration</p>
+          </div>
+          <div class="card">
+            <h3>Artifacts</h3>
+            <p class="meta">grayscale.sif</p>
+            <p class="meta">job.sh</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Test Suite Coverage</h2>
+        <p>Snapshot of how the 120+ tests are distributed across categories.</p>
+      </div>
+      <div class="chart-card">
+        <canvas
+          class="chart-canvas"
+          data-bar-chart
+          data-bar-values='[
+            {"label":"Channel Copy","value":18},
+            {"label":"Arithmetic","value":15},
+            {"label":"Lightness","value":10},
+            {"label":"Luminosity","value":15},
+            {"label":"RMS","value":15},
+            {"label":"Cross-Method","value":40},
+            {"label":"Property","value":8}
+          ]'
+          aria-label="Bar chart of test counts by category"
+          role="img"></canvas>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>CI/CD Pipeline</h2>
+        <p>Automated build-test-container stage followed by HPC deployment.</p>
+      </div>
+      <div class="pipeline" data-pipeline>
+        <div class="pipeline-step">
+          <h4>1. Build + Unit Tests</h4>
+          <p>Compile with CMake and execute the full Google Test suite.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>2. Containerize</h4>
+          <p>Build Singularity image from the project definition file.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>3. Publish Artifacts</h4>
+          <p>Upload grayscale.sif and job.sh for deployment.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>4. Deploy to Galileo100</h4>
+          <p>Securely copy artifacts and submit the SLURM job.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>5. Monitor Execution</h4>
+          <p>Poll sacct/squeue and stream output logs after completion.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Challenges Solved</h2>
+        <p>Lessons learned from deploying to a certificate-gated HPC cluster.</p>
+      </div>
+      <div class="card">
+        <ul>
+          <li>Handled short-lived SSH certificates with secret-driven injection and strict permissions.</li>
+          <li>Added retry loops to wait for SLURM job completion before reading logs.</li>
+          <li>Introduced detailed logging to debug remote deployment failures.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>
