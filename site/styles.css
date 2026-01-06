@@ -418,9 +418,9 @@ main {
   position: fixed;
   inset: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background: rgba(22, 25, 27, 0.5);
