@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AN2DL Challenge 1 | Fabio Rossi</title>
+  <meta name="description" content="Time-series pain classification with RNN/LSTM ensembles, feature engineering, and leakage-safe cross-validation for AN2DL Challenge 1." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="an2dl-challenge-1">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/asarraa/an2dl-challenges-25-26/tree/francesco2" target="_blank" rel="noreferrer">GitHub Repo</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Time-Series | Deep Learning | AN2DL</p>
+        <h1>AN2DL Challenge 1</h1>
+        <p class="lead">
+          Multi-class time-series classification to predict pain status from sensor data. The final pipeline
+          combined robust preprocessing, leakage-safe splits, and RNN/LSTM ensembling to reach high F1 scores.
+        </p>
+        <div class="project-badges">
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">RNN/LSTM/GRU</span>
+          <span class="chip">Cross-Validation</span>
+          <span class="chip">Feature Engineering</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/asarraa/an2dl-challenges-25-26/tree/francesco2" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Jan 2026</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Project (AN2DL)</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Team</p>
+            <p class="value">TheBigBatchTheory</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Best Test F1</p>
+            <p class="value">0.9567</p>
+          </div>
+        </div>
+        <div>
+          <p class="label">Approach</p>
+          <p class="value">Sliding windows + 5-fold CV ensemble</p>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The task required predicting pain levels (no pain, low pain, high pain) from multi-sensor sequences.
+          We focused on avoiding subject leakage, engineering stable features, and balancing model capacity with
+          regularization to prevent overfitting.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Data pipeline</h3>
+            <ul>
+              <li>One-hot encoded categorical features and removed zero-variance / weakly correlated signals.</li>
+              <li>Applied PCA within joint groups to reduce redundancy.</li>
+              <li>Built sliding-window sequences (size 25, stride 2) with zero padding.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Modeling strategy</h3>
+            <ul>
+              <li>RNN/LSTM/GRU variants with dropout, label smoothing, and class-weighted loss.</li>
+              <li>AdamW optimizer and targeted grid search over architecture depth and hidden size.</li>
+              <li>5-fold cross-validation ensemble with majority voting at inference.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Key metrics</h3>
+            <p class="meta">Validation F1 (best LSTM): 0.9384</p>
+            <p class="meta">Test F1 (best LSTM): 0.9567</p>
+            <p class="meta">Test F1 (best RNN): 0.9558</p>
+          </div>
+          <div class="card">
+            <h3>Guardrails</h3>
+            <p class="meta">Subject-level split to prevent leakage</p>
+            <p class="meta">Fold-specific Min-Max scaling</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Pipeline</h2>
+        <p>End-to-end workflow from data profiling to ensemble inference.</p>
+      </div>
+      <div class="pipeline" data-pipeline>
+        <div class="pipeline-step">
+          <h4>1. Profiling + feature selection</h4>
+          <p>Correlation analysis, variance filtering, and PCA to isolate informative joint signals.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>2. Sequence generation</h4>
+          <p>Sliding-window segmentation with stride 2 and fixed-length padding for each subject.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>3. Model training</h4>
+          <p>RNN/LSTM/GRU training with AdamW, label smoothing, and class-weighted loss.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>4. Ensembling</h4>
+          <p>Aggregate K-fold logits and use majority voting to produce final predictions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Results</h2>
+        <p>Top-performing configurations from the final grid search.</p>
+      </div>
+      <div class="card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Hidden Size</th>
+              <th>Validation F1</th>
+              <th>Test F1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LSTM (2 layers)</td>
+              <td>256</td>
+              <td>0.9384</td>
+              <td>0.9567</td>
+            </tr>
+            <tr>
+              <td>RNN (1 layer)</td>
+              <td>64</td>
+              <td>0.9363</td>
+              <td>0.9558</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

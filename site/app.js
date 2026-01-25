@@ -16,6 +16,38 @@ const projects = [
     ]
   },
   {
+    title: "AN2DL Challenge 2 - Histology Slide Classification",
+    context: "Politecnico di Milano",
+    date: "Jan 2026",
+    summary: "Attention-based MIL for breast cancer histology subtypes with ROI-centric multi-scale preprocessing.",
+    tags: ["PyTorch", "OpenCV", "ViT", "MIL", "Histology"],
+    filters: ["bio", "data"],
+    page: "projects/an2dl-challenge-2.html",
+    repo: "https://github.com/asarraa/an2dl-challenges-25-26/tree/francesco2",
+    highlights: [
+      "Built HSV-based quality control to filter stained/contaminated slides and recover usable data.",
+      "Implemented ROI-centric multi-scale tiling (context 768px, detail 256px) with OpenCV masks.",
+      "Developed Attention-MIL with a ViT-S backbone (timm) for slide-level aggregation.",
+      "Advanced from baseline ResNet-18 to AttnMIL, reaching test F1 = 0.3898."
+    ]
+  },
+  {
+    title: "AN2DL Challenge 1 - Time-Series Pain Classification",
+    context: "Politecnico di Milano",
+    date: "Jan 2026",
+    summary: "RNN/LSTM time-series pipeline for multi-class pain status prediction.",
+    tags: ["PyTorch", "RNN", "Time-Series", "Cross-Validation"],
+    filters: ["data"],
+    page: "projects/an2dl-challenge-1.html",
+    repo: "https://github.com/asarraa/an2dl-challenges-25-26/tree/francesco2",
+    highlights: [
+      "Engineered subject-level splits, one-hot encoding, PCA by joint group, and Min-Max scaling.",
+      "Generated sliding windows (size 25, stride 2) to balance context and redundancy.",
+      "Trained RNN/LSTM/GRU with AdamW, class weights, and label smoothing; grid searched hyperparameters.",
+      "Ensembled 5-fold models to reach test F1 up to 0.9567."
+    ]
+  },
+  {
     title: "Football Penalty Takers Analysis",
     context: "Personal project",
     date: "Sep 2024 - Mar 2025",

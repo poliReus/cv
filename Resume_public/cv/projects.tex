@@ -27,6 +27,32 @@
 
 %---------------------------------------------------------
   \cventry
+    {AN2DL Challenge 2 - Histology Slide Classification\textnormal{ | Politecnico di Milano}} % Project
+    {Jan 2026} % Date(s)
+    {
+      \begin{cvitems}
+        \item {Built a histology slide classification pipeline for four breast cancer subtypes (Luminal A/B, HER2+, Triple Negative).}
+        \item {Implemented HSV-based quality control to filter stained/artifact slides and ROI-centric multi-scale tiling with OpenCV.}
+        \item {Developed attention-based MIL with a ViT-S backbone (timm/PyTorch), slide-level aggregation, and leakage-safe splits by original slide.}
+        \item {Advanced from baseline ResNet-18 to ROI+multi-scale and AttnMIL, achieving test F1 = 0.3898.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+  \cventry
+    {AN2DL Challenge 1 - Time-Series Pain Classification\textnormal{ | Politecnico di Milano}} % Project
+    {Jan 2026} % Date(s)
+    {
+      \begin{cvitems}
+        \item {Designed a time-series pipeline to predict pain status from multi-sensor data with subject-level splits to avoid leakage.}
+        \item {Engineered preprocessing: one-hot encoding, variance/correlation filtering, PCA by joint group, and sliding windows (size 25, stride 2).}
+        \item {Trained RNN/LSTM/GRU models with AdamW, label smoothing, class-weighted loss, and grid search; used 5-fold CV ensembling.}
+        \item {Achieved test F1 up to 0.9567 with the best LSTM ensemble.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+  \cventry
     {Football Penalty Takers Analysis\textnormal{ | Personal project}} % Project
     {Sep 2024 – Mar 2025} % Date(s)
     {

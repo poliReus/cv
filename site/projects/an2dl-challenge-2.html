@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AN2DL Challenge 2 | Fabio Rossi</title>
+  <meta name="description" content="Histology slide classification with ROI-centric preprocessing and Attention-MIL using a ViT backbone for AN2DL Challenge 2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body class="project-page" data-project="an2dl-challenge-2">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="project-header">
+    <nav class="nav project-nav" aria-label="Primary">
+      <a class="logo" href="../index.html">FR</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="project-nav-links">
+        Menu
+      </button>
+      <div class="nav-links" id="project-nav-links">
+        <a href="../index.html#projects">All Projects</a>
+        <a href="https://github.com/asarraa/an2dl-challenges-25-26/tree/francesco2" target="_blank" rel="noreferrer">GitHub Repo</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn ghost" href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <section class="project-hero" data-reveal>
+      <div>
+        <p class="eyebrow">Histology | MIL | Computer Vision</p>
+        <h1>AN2DL Challenge 2</h1>
+        <p class="lead">
+          Fine-grained classification of histological slides into Luminal A/B, HER2(+), and Triple Negative.
+          We built a ROI-centric preprocessing pipeline and an Attention-MIL model with a ViT backbone to
+          aggregate slide-level predictions.
+        </p>
+        <div class="project-badges">
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">OpenCV</span>
+          <span class="chip">ViT (timm)</span>
+          <span class="chip">Attention MIL</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/asarraa/an2dl-challenges-25-26/tree/francesco2" target="_blank" rel="noreferrer">View Source</a>
+          <a class="btn ghost" href="../index.html#projects">Back to Projects</a>
+        </div>
+      </div>
+      <div class="project-meta-card">
+        <h3 class="section-title">Project Snapshot</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item">
+            <p class="label">Timeline</p>
+            <p class="value">Jan 2026</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Type</p>
+            <p class="value">Course Project (AN2DL)</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Best Test F1</p>
+            <p class="value">0.3898</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="label">Classes</p>
+            <p class="value">4 subtypes</p>
+          </div>
+        </div>
+        <div>
+          <p class="label">Pipeline</p>
+          <p class="value">QC + ROI tiling + Attention MIL</p>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>
+          The dataset contained noisy slides with stains and artifacts. We prioritized automated cleaning,
+          ROI-centric tile extraction, and a slide-level MIL architecture that could aggregate weak patch signals
+          into a holistic prediction.
+        </p>
+      </div>
+      <div class="project-layout">
+        <div>
+          <div class="card">
+            <h3>Preprocessing highlights</h3>
+            <ul>
+              <li>HSV-based quality control to remove slime and artifact-heavy slides.</li>
+              <li>ROI mask usage to center tiles on diagnostically relevant regions.</li>
+              <li>Multi-scale tiling (context 768px, detail 256px) with paired masks.</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top: 1.5rem;">
+            <h3>Modeling highlights</h3>
+            <ul>
+              <li>Attention-MIL with ViT-S backbone via timm.</li>
+              <li>Slide-level aggregation to reduce patch ambiguity.</li>
+              <li>Two-phase fine-tuning with low LR and CosineAnnealingLR.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="project-sidebar">
+          <div class="card">
+            <h3>Data safeguards</h3>
+            <p class="meta">Leakage-safe split by original slide</p>
+            <p class="meta">Class-weighted sampling</p>
+          </div>
+          <div class="card">
+            <h3>Artifacts filtered</h3>
+            <p class="meta">Stains / slime</p>
+            <p class="meta">Injected images (Shrek)</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Pipeline</h2>
+        <p>Progression from baseline CNNs to slide-level MIL.</p>
+      </div>
+      <div class="pipeline" data-pipeline>
+        <div class="pipeline-step">
+          <h4>1. QC + ROI extraction</h4>
+          <p>HSV filtering and ROI masks to keep diagnostically relevant tissue.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>2. Multi-scale tiling</h4>
+          <p>Context and detail tiles with masks saved to structured train/test CSVs.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>3. Model evolution</h4>
+          <p>Baseline ResNet-18, ROI+multi-scale ResNet, then Attention-MIL.</p>
+        </div>
+        <div class="pipeline-step">
+          <h4>4. Inference</h4>
+          <p>Slide-level aggregation and submission generation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="section-head">
+        <h2>Results</h2>
+        <p>Performance across architectures (weighted F1).</p>
+      </div>
+      <div class="card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Validation F1</th>
+              <th>Test F1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ResNet-18 (sliding windows)</td>
+              <td>0.35</td>
+              <td>0.27</td>
+            </tr>
+            <tr>
+              <td>ResNet-18 (ROI + multi-scale)</td>
+              <td>0.424</td>
+              <td>0.340</td>
+            </tr>
+            <tr>
+              <td>Attention MIL (ViT-S)</td>
+              <td>0.3906</td>
+              <td>0.3898</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explore more projects on the home page.</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>
